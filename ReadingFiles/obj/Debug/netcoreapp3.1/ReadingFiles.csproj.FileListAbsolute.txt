@@ -1,0 +1,13 @@
+C:\Users\ijura\source\repos\ReadingFiles\ReadingFiles\bin\Debug\netcoreapp3.1\ReadingFiles.exe
+C:\Users\ijura\source\repos\ReadingFiles\ReadingFiles\bin\Debug\netcoreapp3.1\ReadingFiles.deps.json
+C:\Users\ijura\source\repos\ReadingFiles\ReadingFiles\bin\Debug\netcoreapp3.1\ReadingFiles.runtimeconfig.json
+C:\Users\ijura\source\repos\ReadingFiles\ReadingFiles\bin\Debug\netcoreapp3.1\ReadingFiles.runtimeconfig.dev.json
+C:\Users\ijura\source\repos\ReadingFiles\ReadingFiles\bin\Debug\netcoreapp3.1\ReadingFiles.dll
+C:\Users\ijura\source\repos\ReadingFiles\ReadingFiles\bin\Debug\netcoreapp3.1\ReadingFiles.pdb
+C:\Users\ijura\source\repos\ReadingFiles\ReadingFiles\obj\Debug\netcoreapp3.1\ReadingFiles.csprojAssemblyReference.cache
+C:\Users\ijura\source\repos\ReadingFiles\ReadingFiles\obj\Debug\netcoreapp3.1\ReadingFiles.csproj.CoreCompileInputs.cache
+C:\Users\ijura\source\repos\ReadingFiles\ReadingFiles\obj\Debug\netcoreapp3.1\ReadingFiles.AssemblyInfoInputs.cache
+C:\Users\ijura\source\repos\ReadingFiles\ReadingFiles\obj\Debug\netcoreapp3.1\ReadingFiles.AssemblyInfo.cs
+C:\Users\ijura\source\repos\ReadingFiles\ReadingFiles\obj\Debug\netcoreapp3.1\ReadingFiles.dll
+C:\Users\ijura\source\repos\ReadingFiles\ReadingFiles\obj\Debug\netcoreapp3.1\ReadingFiles.pdb
+C:\Users\ijura\source\repos\ReadingFiles\ReadingFiles\obj\Debug\netcoreapp3.1\ReadingFiles.genruntimeconfig.cache
