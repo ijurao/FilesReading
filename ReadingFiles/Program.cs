@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -10,40 +11,50 @@ namespace ReadingFiles
 {
     class Program
     {
-         static string fileContent = "";
+         
 
         static async Task Main(string[] args)
         {
             //Console.WriteLine("Creating Files...");
-            //CreateFiles();
+          // CreateFiles();
             //Console.WriteLine("Creation Files FINISHED...");
-          //  MergeFilesSequencial();
-          await MergeFilesParallel();
-         // MergeFilesParallel2();
+            //  MergeFilesSequencial();
+            // await MergeFilesParallel();
+           MergeFilesParallel2();
             Console.WriteLine("Hello World!");
         }
 
 
-        private static  void MergeFilesParallel2()
+        private static void MergeFilesParallel2()
         {
             Stopwatch s = new Stopwatch();
-            Console.WriteLine("Reading files parallel2222...");
+            Console.WriteLine("Reading files parallel by cores...");
             s.Start();
             string path = @"C:\TestFiles\";
             List<Task> readers = new List<Task>();
             object o = new object();
-            Parallel.ForEach(Directory.GetFiles(path), file =>
+            string[] fileContent = new string[Directory.GetFiles(path).Length];
+            var options = new ParallelOptions { MaxDegreeOfParallelism = -1 };
+            Parallel.ForEach(Directory.GetFiles(path).AsParallel(), options,(file,state,i) =>
              {
-                 lock(o)
-                   fileContent += System.IO.File.ReadAllText(file); //+ Environment.NewLine;
+                 // Console.WriteLine(i);
+             
+                    var localContent = System.IO.File.ReadAllText(file);
+                    fileContent[i] += localContent; //+ Environment.NewLine;
                  
              });
+            string finalContent = string.Empty;
+
+            foreach (var item in fileContent)
+            {
+                finalContent += item;
+            }
      
             string fileName = @"C:\TestFiles\mergedParalelUsingPLINQ.txt";
             using (FileStream fs = File.Create(fileName))
             {
                 // Add some text to file    
-                Byte[] content = new UTF8Encoding(true).GetBytes(fileContent.ToString());
+                Byte[] content = new UTF8Encoding(true).GetBytes(finalContent);
                 fs.Write(content, 0, content.Length);
          
 
@@ -66,13 +77,13 @@ namespace ReadingFiles
             foreach (var file in Directory.GetFiles(path))
             {
                 // fileContent += System.IO.File.ReadAllText(file);
-                Task reader = GetTaskReader(file);
-                readers.Add(reader);
+                //Task reader = ; //GetTaskReader(file);
+                readers.Add(Task.Run(() => File.ReadAllText(file)));
             }
-            foreach (var t in readers)
-            {
-                t.Start();
-            }
+            //foreach (var t in readers)
+            //{
+            //    t.Start();
+            //}
              await Task.WhenAll(readers);
             foreach (var task in readers)
             {
@@ -129,8 +140,8 @@ namespace ReadingFiles
         private static void CreateFiles()
         {
             string path = @"C:\TestFiles\";
-            int amountOfFiles = 500;
-            int linesPerFile = 100;
+            int amountOfFiles = 3000;
+            int linesPerFile = 10000;
             for (int i = 0; i < amountOfFiles; i++)
             {
                 string fileName = string.Empty;
